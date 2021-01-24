@@ -9,7 +9,9 @@ This project is the complete implementation (includes Shingling, Min-hashing and
 given in Kaggle. Hamming simillarity is used for the same.
 Group members are :\
 Tanay Gupta : 2018AAPS0343H : https://github.com/Tanay0101\
+
 Mudit Chaturvedi : 2018A7PS0248H : https://github.com/TheRhetorician\
+
 Sristi Sharma : 2018A7PS0299H : https://github.com/judyhopps24
 	
 ## Dependencies
