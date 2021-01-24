@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lsh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>lsh</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cdev%5Cdesktop%5Congoing_projects%5Clsh%5Cprogram%5Clsh.py">c:\users\dev\desktop\ongoing_projects\lsh\program\lsh.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+<a href="operator.html">operator</a><br>
+</td><td width="25%" valign=top><a href="pickle.html">pickle</a><br>
+<a href="random.html">random</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-Hamming_Similarity"><strong>Hamming_Similarity</strong></a>(sign_mat, docA, docB)</dt><dd><tt>takes&nbsp;the&nbsp;signature&nbsp;matrix&nbsp;as&nbsp;input&nbsp;along&nbsp;with&nbsp;the&nbsp;documents&nbsp;who's&nbsp;similarity&nbsp;is&nbsp;to&nbsp;be&nbsp;calculated<br>
+&nbsp;<br>
+return&nbsp;the&nbsp;Hamming&nbsp;Similarity&nbsp;of&nbsp;the&nbsp;documents<br>
+Hamming&nbsp;Similarity&nbsp;=&nbsp;1&nbsp;-&nbsp;Hamming&nbsp;Distance<br>
+Hamming&nbsp;Distance&nbsp;=&nbsp;no.&nbsp;of&nbsp;values&nbsp;that&nbsp;are&nbsp;different&nbsp;in&nbsp;the&nbsp;2&nbsp;columns&nbsp;/&nbsp;total&nbsp;number&nbsp;of&nbsp;values&nbsp;in&nbsp;each&nbsp;column</tt></dd></dl>
+ <dl><dt><a name="-LSH_from_sig"><strong>LSH_from_sig</strong></a>(sign_mat, N, bucket_size, band_size, doc_num, bucket)</dt><dd><tt>input&nbsp;signature&nbsp;matrix&nbsp;and&nbsp;number&nbsp;of&nbsp;permutations<br>
+N&nbsp;=&nbsp;number&nbsp;of&nbsp;bands&nbsp;or&nbsp;number&nbsp;of&nbsp;hash&nbsp;functions&nbsp;to&nbsp;be&nbsp;generated<br>
+bucket_size&nbsp;stores&nbsp;the&nbsp;number&nbsp;of&nbsp;buckets&nbsp;for&nbsp;each&nbsp;band<br>
+band_size&nbsp;stores&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;in&nbsp;each&nbsp;band<br>
+doc_num&nbsp;is&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;documents&nbsp;in&nbsp;the&nbsp;signature&nbsp;matrix<br>
+bucket&nbsp;is&nbsp;an&nbsp;empty&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+return&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;stores&nbsp;the&nbsp;buckets&nbsp;corresponding&nbsp;to&nbsp;each&nbsp;band<br>
+each&nbsp;bucket&nbsp;will&nbsp;have&nbsp;a&nbsp;key(hash&nbsp;value)&nbsp;and&nbsp;a&nbsp;set&nbsp;of&nbsp;documents&nbsp;that&nbsp;are&nbsp;hashed&nbsp;to&nbsp;it</tt></dd></dl>
+ <dl><dt><a name="-ret_similar"><strong>ret_similar</strong></a>(sign_mat, threshold, doc_id)</dt><dd><tt>takes&nbsp;signature&nbsp;matrix,&nbsp;threshold&nbsp;value&nbsp;for&nbsp;similarity&nbsp;and&nbsp;the&nbsp;document&nbsp;id&nbsp;for&nbsp;which&nbsp;similar&nbsp;documents&nbsp;are&nbsp;to&nbsp;be&nbsp;retrieved<br>
+&nbsp;<br>
+N&nbsp;=&nbsp;number&nbsp;of&nbsp;permutations/bands<br>
+&nbsp;<br>
+we&nbsp;have&nbsp;taken&nbsp;the&nbsp;number&nbsp;of&nbsp;buckets&nbsp;for&nbsp;each&nbsp;band&nbsp;to&nbsp;be&nbsp;1,00,000<br>
+&nbsp;<br>
+the&nbsp;bucket&nbsp;dictionary&nbsp;returned&nbsp;from&nbsp;LSH_from_sig&nbsp;is&nbsp;processed&nbsp;to&nbsp;get&nbsp;all&nbsp;candidate&nbsp;pair&nbsp;of&nbsp;documents&nbsp;for&nbsp;the&nbsp;given&nbsp;document_id<br>
+&nbsp;<br>
+From&nbsp;the&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;candidate&nbsp;pairs&nbsp;we&nbsp;check&nbsp;for&nbsp;the&nbsp;Hamming&nbsp;Similarity&nbsp;between&nbsp;them&nbsp;and&nbsp;the&nbsp;query&nbsp;document<br>
+&nbsp;<br>
+Only&nbsp;those&nbsp;documents&nbsp;with&nbsp;Similarity&nbsp;more&nbsp;than&nbsp;the&nbsp;threshold&nbsp;are&nbsp;stored&nbsp;in&nbsp;a&nbsp;separate&nbsp;dictionary&nbsp;ranked_res<br>
+&nbsp;<br>
+ranked_res&nbsp;is&nbsp;a&nbsp;dicitonary&nbsp;that&nbsp;uses&nbsp;similarity&nbsp;score&nbsp;as&nbsp;key&nbsp;and&nbsp;corresponding&nbsp;to&nbsp;each&nbsp;key&nbsp;there&nbsp;is&nbsp;a&nbsp;list&nbsp;of&nbsp;documents<br>
+&nbsp;<br>
+All&nbsp;the&nbsp;documents&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;top&nbsp;2&nbsp;similarity&nbsp;scores&nbsp;are&nbsp;returned&nbsp;by&nbsp;the&nbsp;fn</tt></dd></dl>
+</td></tr></table>
+</body></html>
